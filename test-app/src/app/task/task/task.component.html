@@ -1,0 +1,21 @@
+<div class='task-container'>
+  <p *ngIf="!tasks.length">There is no tasks right now. Please add a new one.</p>
+  <ul *ngIf="tasks.length">
+    <li *ngFor="let task of tasks">{{task}}</li>
+  </ul>
+
+  <form [formGroup]="taskFrom" (submit)="onFormSubmit()">
+    <div class="alert alert-danger" role="alert" *ngIf="taskFrom.get('task')?.errors?.['required']&& taskFrom.dirty">
+      <span>Taks name is requird</span>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="taskFrom.get('task')?.errors?.['minlength']&& taskFrom.dirty">
+      Taks must be 3 characters long
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="taskFrom.get('task')?.errors?.['pattern']&& taskFrom.dirty">
+      Taks name can contain only alphabets
+    </div>
+    <label for="task"></label>
+    <input id="task" formControlName="task" placeholder="add task">&nbsp;
+    <input type='submit' value='submit'>
+  </form>
+</div>
