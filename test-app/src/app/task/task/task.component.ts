@@ -26,6 +26,7 @@ export class TaskComponent implements OnInit {
     console.log(this.taskFrom.value)
     const newtask: string = this.taskFrom.get('task')?.value
     this.tasks.push(newtask)
+    this.taskFrom.reset();
   }
 
 }
